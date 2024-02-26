@@ -1,0 +1,103 @@
+---
+
+---
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <img src="/media/img/logo.png" alt="Votosila Logo" />
+      <h1>Voto<span>sila</span></h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/">
+            <span class="material-symbols-outlined">home</span>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="/about">
+            <span class="material-symbols-outlined">note_stack</span>
+            <span>Sobre</span>
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            <span class="material-symbols-outlined">comment</span>
+            <span>Contato</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    background-color: #23262d;
+	background-color: #4654A3;
+    color: white;
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .3rem;
+	background-color: #ffffff;
+	padding: .1rem 1rem .1rem .1rem;
+	border-radius: 2rem;;
+  }
+
+  header .logo h1 {
+	font-size: 1.6rem;
+	color: #4654A3;
+  }
+
+  header .logo h1 span {
+	color: #4654A3;
+ }
+
+  header .logo img {
+	width: 2.4rem;
+	height: 2.4rem;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+  header nav ul,
+  header nav a {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+	gap: 1.5rem;
+	align-items: center;
+	transition: 1s;
+  }
+
+  header nav a {
+    color: white;
+    text-decoration: none;
+	gap: 0.2rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0);
+  }
+
+  header nav a span {
+  }
+
+  header nav a:hover {
+	border-color: white;
+  }
+</style>

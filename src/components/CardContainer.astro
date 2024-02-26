@@ -1,0 +1,64 @@
+---
+import Card from "../components/Card.astro";
+
+interface card {
+	title: string;
+	img: string;
+	votes: string;
+	order: number;
+}
+interface Props {
+	cards: [card];
+}
+
+const { cards } = Astro.props;
+---
+
+<article class="cards">
+	{ cards.map( card => <Card {...card} /> )}
+	<div class="cards-vote" id="cards-vote">Qual o <b>melhor</b> presidente que o <b>Brasil</b> já teve?</div>
+</article>
+
+<style>
+	.cards {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-items: flex-end;
+
+		height: 600px;
+		min-width: 600px;
+		transition: .5s;
+	}
+
+	.cards-vote {
+		font-size: 1.2rem;
+		transition: .5s ease-in-out;
+	}
+
+	.cards-vote.active {
+		background: #0Fb;
+		font-weight: bold;
+		padding: 0.5rem 2rem;
+	}
+</style>
+
+<script>
+	document.querySelectorAll('.card').forEach(card => {
+		card.addEventListener('click', () => {
+			votar(card.classList[1].replace('card-', ''))
+		})
+	})
+
+	function votar(order) {
+		console.log('Votar: ', order);
+		const cards = document.querySelectorAll('.card')
+		cards.forEach(card => {
+			card.classList.remove('card-winner', 'card-loser')
+			card.classList.add(card.classList.contains(`card-${order}`) ? 'card-winner' : 'card-loser')
+		})
+		document.getElementById('cards-vote').innerHTML = `Você votou em "${document.querySelector('.card-winner h2')?.innerHTML}"`;
+		document.getElementById('cards-vote').classList.add('active');
+	}
+</script>

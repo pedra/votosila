@@ -1,0 +1,144 @@
+---
+import Header from "@layouts/part/Header.astro";
+import Footer from "@layouts/part/Footer.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+<style is:global>
+  /* makes sizing simpler */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* remove default spacing */
+  /* force styling of type through styling, rather than elements */
+  * {
+    margin: 0;
+    padding: 0;
+    /*font: inherit;*/
+  }
+
+  /* dark mode user-agent-styles */
+  /* improves punctuation in supported browsers */
+  html {
+    /* color-scheme: dark light; */
+    hanging-punctuation: first last;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* min body height */
+  body {
+    min-height: 100svh;
+  }
+
+  /* responsive images/videos */
+  img,
+  picture,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Improved heading in supported browsers */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  /* improve readability with max-width on paragraphs and lists */
+  /* prevent orphans in supported browsers */
+  p,
+  li {
+    max-width: var(--p-max-width, 65ch);
+    text-wrap: pretty;
+  }
+
+  /* ICONS ---------------------------------------------------- */
+  .material-symbols-outlined {
+    font-variation-settings:
+      "FILL" 0,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+  }
+
+  /* LAYOUT --------------------------------------------------- */
+  .container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header,
+  footer,
+  main {
+    display: flex;
+    align-items: center;
+  }
+
+  main {
+    flex: 1;
+    flex-direction: column;
+  }
+
+  footer .container {
+	display: flex;
+	justify-content: center;
+  }
+
+  /* Smooth scroll in link (<a>), only 
+	It's running for all container...
+*/
+  @media (prefers-reduced-motion: no-preference) {
+    :has(:target) {
+      scroll-behavior: smooth;
+      scroll-padding-top: 3rem;
+    }
+  }
+</style>

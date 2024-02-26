@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/CardContainer.astro";
+
+const cards = [
+  {
+    title: "Bolsonaro",
+    img: "cad1",
+    votes: "1.345.345",
+    order: "1",
+  },
+  {
+    title: "LuLadrão",
+    img: "cad2",
+    votes: "3.456",
+    order: "2",
+  },
+];
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="container">
+    <section>
+      <Card {cards} />
+    </section>
+  </div>
+</Layout>
