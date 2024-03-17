@@ -1,0 +1,13 @@
+
+
+.card-opening {
+	/* animation: cardopening 1s 1; */
+	position: absolute;
+}
+
+@keyframes cardopening {
+	0% {
+		position: absolute;
+		inset: 0;
+	}
+}

@@ -1,0 +1,24 @@
+---
+const { data } = Astro.props;
+
+console.log("Data:", data);
+
+const logo = `background-image: url('/media/img/logo_64.png')`;
+const img = `/cad/cad${data.id}.jpg`;
+const front = `background-image: url('${img}')`;
+const voteUrl = `/vote/${data.id}`;
+---
+
+<div class="card">
+  <div class="front" style={logo}></div>
+  <div class="back" style={front}>
+	<div class="content">
+	<div class="title">
+    <img src={img} alt={data.description} />
+    <h2>{data.title}</h2>
+	</div>
+    <p>{data.description}</p>
+    <a class="btn" href={voteUrl}>Vote</a>
+	</div>
+  </div>
+</div>

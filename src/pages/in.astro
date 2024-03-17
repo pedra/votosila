@@ -1,0 +1,80 @@
+---
+import Layout from "@layouts/Layout.astro";
+import InCard from "@components/inCard.astro";
+import Candidates from "@data/candidate.json";
+
+import "@styles/in.css";
+import "@styles/in_timeline.css";
+
+
+
+/**
+ * TIME LINE
+ 
+	1 - Cards sobrepostos (lado back com logo do App) com leve rotação para mostrar que se trata de uma pilha de cartões.
+
+	2 - As cartas se espalham vertical ou horizontalmente (conforme o tipo/tamanho de tela) - corrige a rotação para todos alnhados em grid.
+
+	3 - Sequencialmnte, fazem rotação mostrando a front face.
+
+		Usar efeitos de sombra e reflexo (gradient linear do before).
+		Cartas sensíveis ao mouse hover (rotação 3D + sombra + reflexo)
+
+	4 - Ao ser clicada, a carta expande, reposiciona a foto (left/top + redução do tamanho) e acrescenta informações da opção.
+		Mostra botão "Votar" + "reprovar" - no modo de edição (usuário criador), mostra botão "editar".
+
+		Votar: retorna ao formato "grid" (cards lado a lado) com o cartão votado em destaque (sobreposto e maior).
+		Reprovar: retorna ao "grid" com esse cartão destacado com opacidade inferior e sem sobra/reflexo.
+		Editar: habilita a edição do card - troca da foto, edição "inplace" do texto e mostra botão "deletar".
+		Deletar: remove o card do grid, depois de pedir confirmação.
+
+	Obs:
+
+	1 - O "grid" deve apresentar um botão "Novo" para criar um novo card, quando o usuário for o criador da votação.
+	2 - A duração total da animação deve ser de 0.3s ou menos.
+	3 - O "grid" deve ser responsivo. Expande horizontalmente e, depois, verticalmente.
+
+	INTERAÇÃO COM OUTROS USUÁRIOS
+	=============================
+
+	O botão "comments" só deve ser mostrado depois da votação ser concluída.
+	Ao clicar, os comentários são carregados abaixo do Grid em quantidade limitada a 10 (máximo) e com animação "desenrolar" (espalhar verticalmente).
+	Um botão "carregar mais" deve ser mostrado no final do scroll. Não usar carregamento infinito.
+
+	O botão "share" deve ser mostrado depois da votação ser concluída.
+	Ao clicar, um modal com a opção de compartilhar a votação deve ser exibido com o "embed" da rede social (twitter, facebook, etc) e opção de simples cópia do link.
+	Um código de compartilhamento deve ser gerado dinamicamente para rasttreamento, com as seguintes retenções:
+	- O ID do usuário atual;
+	- O ID da votação;
+	- O ID da rede social ou plataforma (twitter, facebook, link, etc);
+	- Registrado no banco de dados com a data e hora da criação e a opção escolhida pelo usuário.
+
+	O botão "report" deve ser mostrado depois da votação ser concluída.
+	Os dados e gráficos aparecem abaixo do Grid, com animação "desenrolar" (espalhar verticalmente) com scroll automático para essa região.
+	Um botão "export CSV" gera um arquivo CSV com os dados da votação, ativando o download, imediatamente.
+	Outro botão "print" abre a impressão dos dados da votação, formatando a tela (@media print) para impressão em papel ou PDF.
+
+	Obs: futuramente, esse relatório dever conectado com o Google Data Studio para gerar relatórios de análise mais completos e flexíveis.
+
+
+	
+ */
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="container">
+    <section>
+      <div class="flex">
+		{
+			Candidates.map( (c) => {
+				if(c.id < 11) return	(<InCard data={c}  order={c.id} />) 
+			})
+		}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script src="../js/in.js"></script>
+
+
