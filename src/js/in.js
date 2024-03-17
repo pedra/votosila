@@ -55,6 +55,7 @@ function virar(o = true, t = 100, c = null, callback) {
 
 function time1(callback) {
 	FLEX.style.width = '300px'
+	FLEX.style.marginTop = '-440px'
 	var r = 27
 	CARDS.forEach(c => {
 		c.style.marginTop = (r == 27 ? 0 : -300) + 'px'
@@ -72,5 +73,7 @@ function time2() {
 		c.style.marginTop = '0'
 		c.style.transform = 'none'
 	})
+	FLEX.style.marginTop = 'auto'
 	FLEX.style.width = 'auto'
+	FLEX.style.height = 'auto'
 }

@@ -31,11 +31,14 @@ const { title } = Astro.props;
     <!-- <script src="/js/card.js"></script> -->
   </head>
   <body>
-    <Header />
+    <!-- <Header /> -->
+    <header>
+      <h1>Qual o seu candidato em 2026?</h1>
+    </header>
     <main>
       <slot />
     </main>
-    <Footer />
+    <!-- <Footer /> -->
   </body>
 </html>
 <style is:global>
@@ -141,5 +144,17 @@ const { title } = Astro.props;
       scroll-behavior: smooth;
       scroll-padding-top: 3rem;
     }
+  }
+
+  /* TESTE HEADER ----------------------------------------------------- */
+  header {
+    color: #fff;
+    text-align: center;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(18px);
+	box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+  }
+  header h1 {
+    width: 100%;
   }
 </style>
