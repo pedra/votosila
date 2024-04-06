@@ -53,7 +53,7 @@ main {
 	perspective: 1500;
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	height: 300px;
+	height: 400px;
 	width: 300px;
 	margin: 0;
 	opacity: 0;
@@ -117,6 +117,7 @@ main {
 .card .back {
 	background: #333;
 	background-size: cover;
+	background-position: center;
 	transform: rotateY(-180deg);
 }
 
@@ -151,7 +152,6 @@ main {
 .card .back h2,
 .card .back p,
 .card .back .btn {
-	/* transition: all .2s 0.3s, opacity 0.4s 0.2s; */
 	transition: all .1s 0.2s, opacity 0.2s 0.1s;
 	filter: blur(60px);
 }
@@ -267,19 +267,13 @@ main {
 		transform: scale(0);
 	}
 
-	5% {
+	50% {
 		opacity: 1;
 		transform: scale(1.2);
 	}
 
-	10% {
-		opacity: 1;
-		transform: scale(1);
-	}
-
 	100% {
 		opacity: 1;
-		width: 600px;
-		height: 600px;
+		transform: scale(1);
 	}
 }
