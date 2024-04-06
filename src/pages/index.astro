@@ -23,6 +23,31 @@ const cards = [
     <section>
       <Card {cards} />
     </section>
-	<button onclick="location.href='/in'">Go</button>
+
+	<div class="controll">
+    <button onclick="location.href='/in'">Go</button>
+    <button onclick="location.href='/vota'">Vota</button>
+	</div>
   </div>
 </Layout>
+
+<style>
+	.controll {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		padding: 1rem;
+		margin: 2rem auto;
+	}
+
+	button {
+		padding: .5rem 2rem;
+		border: none;
+		border-radius: 10px;
+		background: #000;
+		color: #fff;
+		font-size: 1.2rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+</style>

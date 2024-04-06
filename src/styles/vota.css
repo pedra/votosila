@@ -17,13 +17,6 @@ main {
 	padding: 2rem 0;
 }
 
-main section {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100dvh;
-}
-
 /* GLASS ---------------------------------------------------- */
 .glass {
 	position: fixed;
@@ -42,16 +35,6 @@ main section {
 	max-width: 1330px;
 }
 
-.grid {
-	display: grid;
-	position: relative;
-	grid-template-columns: repeat(auto-fit, 300px);
-	text-align: center;
-	gap: 2rem;
-
-	margin: 2rem auto;
-}
-
 .flex {
 	display: flex;
 	position: relative;
@@ -59,13 +42,8 @@ main section {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	gap: 2rem;
-
-	width: 300px;
-	height: 300px;
-
-	transition: .3s;
-
+	gap: 1rem;
+	transition: .2s;
 	margin: 2rem auto;
 }
 
@@ -77,11 +55,9 @@ main section {
 	transform-style: preserve-3d;
 	height: 300px;
 	width: 300px;
-	/* display: flex; */
 	margin: 0;
 	opacity: 0;
-
-	transition: .3s;
+	transition: .2s;
 }
 
 .card .front,
@@ -175,7 +151,8 @@ main section {
 .card .back h2,
 .card .back p,
 .card .back .btn {
-	transition: all .2s 0.3s, opacity 0.4s 0.2s;
+	/* transition: all .2s 0.3s, opacity 0.4s 0.2s; */
+	transition: all .1s 0.2s, opacity 0.2s 0.1s;
 	filter: blur(60px);
 }
 
@@ -247,10 +224,7 @@ main section {
 }
 
 .card.show {
-	/* transition: all 0.3s 0.3s easy-in-out; */
-	/* opacity: 1; */
-	/* transform: scale(1.2) !important; */
-	animation: cardPop 0.3s cubic-bezier(0.43, -1.24, 0.33, 2.34) 0.3s forwards;
+	animation: cardPop .6s cubic-bezier(0.43, -1.24, 0.33, 2.34) 0.3s forwards;
 }
 
 .card.show .front,
@@ -271,6 +245,7 @@ main section {
 .card.active:hover {
 	filter: none !important;
 	box-shadow: 20px 20px 30px 50px rgba(0, 0, 0, 0.6);
+	z-index: 3000;
 }
 
 .card.active:hover .back {
@@ -278,25 +253,11 @@ main section {
 	transform: scale(1.2);
 }
 
-/* .card .back h2,
-.card .back p,
-.card .back a.btn {
-	position: relative;
-	margin-top: 3rem;
-	opacity: 0;
-	transition: .6s;
-}
-.card.active:hover .back h2,
-.card.active:hover .back p,
-.card.active:hover .back a.btn {
-	opacity: 1;
-	margin-top: 0;
-} */
 
 @media screen and (max-width: 600px) {
-	.flex {
-		transform: scale(0.9);
-		align-items: start;
+	.card.active {
+		width: 180px;
+		height: 180px;
 	}
 }
 
@@ -306,13 +267,19 @@ main section {
 		transform: scale(0);
 	}
 
-	50% {
+	5% {
 		opacity: 1;
 		transform: scale(1.2);
 	}
 
-	100% {
+	10% {
 		opacity: 1;
 		transform: scale(1);
+	}
+
+	100% {
+		opacity: 1;
+		width: 600px;
+		height: 600px;
 	}
 }

@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import VotaCard from "@components/votaCard.astro";
+import Candidates from "@data/candidate.json";
+
+import "@styles/vota.css";
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="container">
+    <section>
+      <div class="flex">
+        {
+          Candidates.map((c) => {
+            if (c.id < 13) return <VotaCard data={c} order={c.id} />;
+          })
+        }
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script src="../js/vota.js"></script>

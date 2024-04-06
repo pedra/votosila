@@ -3,26 +3,35 @@ const FLEX = document.querySelector('.flex')
 const CARDS = document.querySelectorAll('.card')
 const BTN = document.querySelectorAll('.btn')
 
+const _e = {},
+	_ = (e, b = false) => {
+		if (_e[e]) return _e[e]
+		let x = document[`querySelector${b ? 'All' : ''}`](e) || false
+		if (x) return _e[e] = x
+	},
+	_a = e => _(e, true)
+
 BTN.forEach(btn => btn.addEventListener('click', (e) => {
 	e.preventDefault()
-
-	play(1)
-	fechar()
+	fechar(e.currentTarget.id.replace('cardbtn-', ''))
 }))
 
 abrir()
 
 function abrir() {
+	glass()
 	play(2)
-	time1(
-		virar(true, 30, null,
-			setTimeout(() => time2(), 2000)
-		)
-	)
+	time1(virar(true, 100, null, setTimeout(() => time2(() => glass(false)), 2000)))
 }
 
-function fechar() {
-	virar(false)
+function fechar(card) {
+	glass()
+	play(1)
+	virar(false, 100, null, setTimeout(() => {
+		glass(false)
+		play('pop')
+		show(card)
+	}, 1100))
 	time1()
 }
 
@@ -40,17 +49,22 @@ window['abrir'] = abrir;
 window['fechar'] = fechar;
 window['time2'] = time2;
 window['xxplay'] = play;
+window['glass'] = glass;
+window['_'] = _;
+window['_a'] = _a;
 
 
 function virar(o = true, t = 100, c = null, callback) {
-	if (null == c) c = CARDS.length
+	if (null === c) c = CARDS.length
 	t = ++t
-	if (c > CARDS.length || !c) {
+
+	console.log(o, t, c)
+	if (c == 0 || c > CARDS.length || !c) {
 		if ('function' == typeof callback) callback()
 		return false;
 	}
 	CARDS[c - 1].classList[o ? 'add' : 'remove']('active')
-	setTimeout(() => virar(o, t, c - 1), t)
+	setTimeout(() => virar(o, t, c - 1, callback), t)
 }
 
 function time1(callback) {
@@ -67,7 +81,7 @@ function time1(callback) {
 	if ('function' == typeof callback) callback()
 }
 
-function time2() {
+function time2(callback) {
 	play(3)
 	CARDS.forEach(c => {
 		c.style.marginTop = '0'
@@ -76,4 +90,21 @@ function time2() {
 	FLEX.style.marginTop = 'auto'
 	FLEX.style.width = 'auto'
 	FLEX.style.height = 'auto'
+
+	if ('function' == typeof callback) callback()
 }
+
+function show(card) {
+	_(`#cardid-${card}`).classList.add('show')
+	_(`#cardid-${card}`).style = ''
+}
+
+function glass (active = true){
+	_('.glass').classList[active ? 'add' : 'remove']('on')
+}
+
+//function _(e) { return document.querySelector(e) }
+//function _a(e) { return document.querySelectorAll(e) }
+
+
+
